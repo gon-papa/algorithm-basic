@@ -1,0 +1,14 @@
+services:
+  app:
+    build: .
+    volumes:
+      - ./:/app/work
+      - python-lib-data:/usr/local/lib/
+      # 設定の永続化
+      - ./setting:/home/jovyan/.jupyter/
+    ports:
+      - 8888:8888
+    tty: true
+
+volumes:
+  python-lib-data:

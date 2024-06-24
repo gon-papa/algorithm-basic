@@ -1,0 +1,26 @@
+up:
+	docker compose up -d
+
+down:
+	docker compose down
+
+build:
+	docker compose build --no-cache
+
+app:
+	docker compose exec app bash
+
+add:
+ifndef lib
+	$(error lib is not set)
+endif
+	docker compose exec app poetry add "$(lib)"
+
+remove:
+ifndef lib
+	$(error lib is not set)
+endif
+	docker compose exec app  poetry remove "$(lib)"
+
+data_del:
+	rm -rf ./work/data/*
