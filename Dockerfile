@@ -8,15 +8,15 @@ RUN pip install --upgrade pip \
     && pip install poetry
 
 # 必要なファイルのコピー
-# COPY ./pyproject.toml /app/work/pyproject.toml
-# COPY ./poetry.lock /app/work/poetry.lock
+COPY ./pyproject.toml /app/work/pyproject.toml
+COPY ./poetry.lock /app/work/poetry.lock
 
 # 環境変数の設定
 ENV MAKE_ENV=container
 
 # Poetryの設定と依存関係のインストール
-# RUN poetry config virtualenvs.create false && \
-#     poetry install --no-interaction --no-root
+RUN poetry config virtualenvs.create false && \
+    poetry install --no-interaction --no-root
 
 # JupyterLabの設定ファイルを作成し、パスワード認証を無効にする
 RUN mkdir -p ~/.jupyter/lab/user-settings/@jupyterlab/notebook-extension/ && \
